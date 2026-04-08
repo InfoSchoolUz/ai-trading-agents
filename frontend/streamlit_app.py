@@ -9,7 +9,7 @@ import requests
 import streamlit as st
 
 st.set_page_config(
-    page_title="AI Trading Terminal",
+    page_title="AI Trading Agents",
     page_icon="📈",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -634,7 +634,7 @@ inject_css()
 backend_url = get_backend_url()
 
 with st.sidebar:
-    st.markdown("## AI Trading Terminal")
+    st.markdown("## AI Trading Agents")
 
     category = st.selectbox("Category", list(POPULAR_TICKERS.keys()), index=0)
     asset_name = st.selectbox("Asset", list(POPULAR_TICKERS[category].keys()))
@@ -679,7 +679,7 @@ if analyze_clicked:
 if st.session_state.last_error:
     st.error(st.session_state.last_error)
 
-st.markdown('<div class="page-title">AI Trading Terminal</div>', unsafe_allow_html=True)
+st.markdown('<div class="page-title">AI Trading Agents</div>', unsafe_allow_html=True)
 st.markdown('<div class="page-subtitle">Market analysis and decision support</div>', unsafe_allow_html=True)
 
 if not st.session_state.analyzed or not st.session_state.result:
@@ -845,4 +845,4 @@ with st.expander("System details", expanded=False):
         }
     )
 
-st.markdown('<div class="footer-note">AI Trading Terminal</div>', unsafe_allow_html=True)
+st.markdown('<div class="page-title">AI Trading Agents</div>', unsafe_allow_html=True)
