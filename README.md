@@ -1,62 +1,100 @@
-# 📈 AI Trading Agents
+# 🚀 Autonomous AI Trading Agent
 
-An AI-powered trading analysis system that combines market data, news sentiment, risk modeling, and Google Gemini AI to generate actionable trading insights.
+> This is not a trading dashboard.
+> It is an autonomous multi-agent AI trading system.
+
+---
+<p align="center">
+  <img src="ai_trading_agents_logo.png" alt="AI Trading Agent Logo" width="700"/>
+</p>
 
 ---
 
-## 🚀 Features
+## 🧠 Overview
 
-* 📊 Market analysis (trend, price, volatility)
-* 📰 News sentiment analysis from live headlines
+AI Trading Agent is a **real-time autonomous system** that analyzes market data, interprets news sentiment, evaluates risk, and executes trading decisions.
+
+The system is designed as a **multi-agent architecture**, where each agent has a specialized role in the trading pipeline.
+
+---
+
+## ⚡ Key Features
+
+* 📊 Market analysis (trend, volatility, indicators)
+* 📰 News sentiment analysis using AI
+* ⚖️ Risk management (position sizing, exposure control)
 * 🤖 AI-powered insights using Google Gemini
-* ⚖️ Risk management (position sizing, stop-loss, take-profit)
 * 🧠 Decision engine (BUY / SELL / HOLD)
-* 📉 Portfolio tracking (PNL, drawdown)
-* 🔁 Trade execution simulation (paper trading)
-* 🎨 Modern dashboard UI (Streamlit)
+* 🔁 Trade execution simulation (Kraken-compatible)
+* 📉 Portfolio tracking (PnL, drawdown)
+* 🎨 Interactive dashboard (Streamlit)
 
 ---
 
-## 🧠 How It Works
+## 🏗 Architecture
 
-Multi-agent architecture:
+The system follows a **multi-agent pipeline**:
 
-Market Data → News Analysis → Risk Assessment → Decision Engine → Execution
+```
+Market Agent → News Agent → Risk Agent → Trading Brain → Execution Agent
+```
 
-### Agents:
+### Agents
 
-* **Market Agent** → analyzes price & trend
-* **News Agent** → extracts sentiment from news
-* **Risk Agent** → calculates risk & position sizing
-* **Trading Brain** → makes final decision
+* **Market Agent**
+
+  * Analyzes price, trend, and technical indicators
+
+* **News Agent**
+
+  * Extracts sentiment from live news (Gemini-powered)
+
+* **Risk Agent**
+
+  * Calculates risk, position sizing, and exposure
+
+* **Trading Brain (Orchestrator)**
+
+  * Combines all signals and makes final decision
+
+* **Execution Agent**
+
+  * Simulates trade execution (Kraken-compatible logic)
 
 ---
 
 ## 🤖 AI Integration
 
-Uses Google Gemini API to generate:
+Google Gemini is used for:
 
-* AI trading insights
-* Market sentiment explanation
+* Market interpretation
+* News sentiment understanding
+* Explanation of trading decisions
 
-If AI is disabled, system automatically falls back to standard logic.
-
----
-
-## 🛠️ Tech Stack
-
-* Backend: FastAPI
-* Frontend: Streamlit
-* AI: Google Gemini (google-generativeai)
-* Data: yfinance, RSS feeds
-* Visualization: Plotly
-* Language: Python
+Fallback logic ensures the system works even without AI.
 
 ---
 
-## ⚙️ Installation
+## 🛠 Tech Stack
 
-### 1. Clone repo
+* **Backend:** FastAPI
+* **Frontend:** Streamlit
+* **AI:** Google Gemini API
+* **Data:** yfinance, RSS feeds
+* **Visualization:** Plotly
+* **Language:** Python
+
+---
+
+## 🎬 Demo Video
+
+👉 https://www.youtube.com/watch?v=IGJ9_waZwG8
+
+---
+
+## 📦 Installation
+
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/ai-trading-agents.git
@@ -106,7 +144,7 @@ EXECUTION_CASH_FRACTION=0.10
 
 ---
 
-## ▶️ Run Application
+## ▶️ Run the Application
 
 ### Start backend
 
@@ -120,7 +158,7 @@ uvicorn app.main:app --reload
 ### Start frontend
 
 ```bash
-streamlit run streamlit_app_ai_ready.py
+streamlit run frontend/streamlit_app.py
 ```
 
 ---
@@ -135,7 +173,9 @@ streamlit run streamlit_app_ai_ready.py
 
 ## 📊 Output
 
-* Trading signal (BUY / SELL / HOLD)
+The system provides:
+
+* BUY / SELL / HOLD signal
 * Confidence score
 * AI-generated explanation
 * News sentiment
@@ -144,43 +184,38 @@ streamlit run streamlit_app_ai_ready.py
 
 ---
 
-## ⚠️ Notes
+## ⚠️ Disclaimer
 
-* AI requires valid Google API key
-* System works without AI (fallback mode)
-* Trading runs in paper mode by default
+This project is for research and demonstration purposes only.
+It does not provide financial advice or real trading guarantees.
 
 ---
 
-## 📁 Project Structure
+## 🚀 Why This Project Stands Out
 
-```
-backend/
-  app/
-    agents/
-    services/
-    schemas/
-    core/
-    orchestrator/
-
-frontend/
-  streamlit_app.py
-```
+* True **multi-agent architecture**
+* Combines **market + news + risk + AI**
+* Designed as an **autonomous decision-making system**
+* Ready for integration with real trading systems (Kraken-compatible)
 
 ---
 
 ## 👨‍💻 Author
 
-Azamat Madrimov
+**Azamat Madrimov**
 
 ---
 
-## 🚀 Future Plans
+## 🔮 Future Improvements
 
-* AI chat assistant
-* Real-time AI streaming
-* Advanced strategies
-* Multi-exchange support
+* Real-time execution with exchanges
+* Advanced AI trading strategies
+* Multi-asset support
 * Cloud deployment
+* AI chat assistant
 
 ---
+
+## 🏁 Final Note
+
+This project demonstrates how autonomous AI agents can transform trading from manual decision-making into intelligent, data-driven automation.
