@@ -14,8 +14,11 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="expanded",
 )
+# Local development uchun (kompyuterda ishlaganda)
+# DEFAULT_BACKEND_URL = "http://127.0.0.1:8000"
 
-DEFAULT_BACKEND_URL = "http://127.0.0.1:8000"
+# Production (Railway backend)
+DEFAULT_BACKEND_URL = "https://ai-trading-agents-production.up.railway.app"
 
 POPULAR_TICKERS = {
     "🪙 Crypto — Top 20": {
