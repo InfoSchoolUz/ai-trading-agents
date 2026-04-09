@@ -18,39 +18,166 @@ st.set_page_config(
 DEFAULT_BACKEND_URL = "http://127.0.0.1:8000"
 
 POPULAR_TICKERS = {
-    "Crypto": {
+    "🪙 Crypto — Top 20": {
         "Bitcoin": "BTC-USD",
         "Ethereum": "ETH-USD",
         "Solana": "SOL-USD",
-        "BNB": "BNB-USD",
+        "BNB (Binance Coin)": "BNB-USD",
+        "XRP (Ripple)": "XRP-USD",
         "Dogecoin": "DOGE-USD",
-        "XRP": "XRP-USD",
+        "Cardano": "ADA-USD",
+        "Avalanche": "AVAX-USD",
+        "Chainlink": "LINK-USD",
+        "Polkadot": "DOT-USD",
+        "Litecoin": "LTC-USD",
+        "Uniswap": "UNI-USD",
+        "Polygon": "MATIC-USD",
+        "Toncoin": "TON-USD",
+        "Shiba Inu": "SHIB-USD",
+        "Bitcoin Cash": "BCH-USD",
+        "Stellar": "XLM-USD",
+        "Monero": "XMR-USD",
+        "Cosmos": "ATOM-USD",
+        "Filecoin": "FIL-USD",
     },
-    "Stocks": {
-        "Apple": "AAPL",
-        "Microsoft": "MSFT",
-        "NVIDIA": "NVDA",
-        "Tesla": "TSLA",
-        "Google": "GOOGL",
-        "Amazon": "AMZN",
+    "💻 Tech Stocks": {
+        "Apple (iPhone, Mac)": "AAPL",
+        "Microsoft (Windows, Azure)": "MSFT",
+        "NVIDIA (AI Chips)": "NVDA",
+        "Tesla (Electric Cars)": "TSLA",
+        "Google (Alphabet)": "GOOGL",
+        "Amazon (AWS, Shopping)": "AMZN",
+        "Meta (Facebook, Instagram)": "META",
+        "Netflix (Streaming)": "NFLX",
+        "AMD (Processors)": "AMD",
+        "Intel (Processors)": "INTC",
+        "Adobe (Creative Software)": "ADBE",
+        "Salesforce (CRM Software)": "CRM",
+        "Oracle (Database)": "ORCL",
+        "Cisco (Networking)": "CSCO",
+        "IBM (Enterprise Tech)": "IBM",
+        "Qualcomm (Mobile Chips)": "QCOM",
+        "Broadcom (Semiconductors)": "AVGO",
+        "Spotify (Music Streaming)": "SPOT",
+        "Uber (Ride Sharing)": "UBER",
+        "Airbnb (Travel)": "ABNB",
     },
-    "Indexes": {
-        "S&P 500": "^GSPC",
-        "Dow Jones": "^DJI",
-        "Nasdaq": "^IXIC",
-        "VIX": "^VIX",
+    "🏦 Finance Stocks": {
+        "JPMorgan Chase (Largest US Bank)": "JPM",
+        "Goldman Sachs (Investment Bank)": "GS",
+        "Bank of America": "BAC",
+        "Wells Fargo": "WFC",
+        "Morgan Stanley (Investment Bank)": "MS",
+        "Visa (Payment Network)": "V",
+        "Mastercard (Payment Network)": "MA",
+        "PayPal (Online Payments)": "PYPL",
+        "Coinbase (Crypto Exchange)": "COIN",
+        "BlackRock (Asset Management)": "BLK",
+        "American Express (Credit Cards)": "AXP",
+        "Charles Schwab (Brokerage)": "SCHW",
     },
-    "Forex": {
-        "EUR/USD": "EURUSD=X",
-        "GBP/USD": "GBPUSD=X",
-        "USD/JPY": "USDJPY=X",
+    "🏥 Healthcare Stocks": {
+        "Johnson & Johnson (Pharma)": "JNJ",
+        "Pfizer (Vaccines, Drugs)": "PFE",
+        "Moderna (mRNA Vaccines)": "MRNA",
+        "AbbVie (Biologics)": "ABBV",
+        "Merck (Pharma)": "MRK",
+        "UnitedHealth (Health Insurance)": "UNH",
+        "CVS Health (Pharmacy)": "CVS",
+        "Eli Lilly (Diabetes, Weight Loss)": "LLY",
     },
-    "Commodities": {
-        "Gold": "GC=F",
-        "Silver": "SI=F",
-        "Oil": "CL=F",
+    "🛒 Consumer Stocks": {
+        "Walmart (Retail Giant)": "WMT",
+        "Coca-Cola (Beverages)": "KO",
+        "PepsiCo (Beverages & Snacks)": "PEP",
+        "McDonald's (Fast Food)": "MCD",
+        "Nike (Sportswear)": "NKE",
+        "Disney (Entertainment)": "DIS",
+        "Starbucks (Coffee)": "SBUX",
+        "Procter & Gamble (Household)": "PG",
+        "Target (Retail)": "TGT",
+        "Home Depot (Home Improvement)": "HD",
     },
-    "Custom": {
+    "⚡ Energy Stocks": {
+        "ExxonMobil (Oil & Gas)": "XOM",
+        "Chevron (Oil & Gas)": "CVX",
+        "Shell (Oil & Gas)": "SHEL",
+        "BP (Oil & Gas)": "BP",
+        "ConocoPhillips (Oil & Gas)": "COP",
+        "Schlumberger (Oilfield Services)": "SLB",
+        "NextEra Energy (Renewable)": "NEE",
+    },
+    "📊 Indexes": {
+        "S&P 500 (Top 500 US Companies)": "^GSPC",
+        "Dow Jones (Top 30 US Companies)": "^DJI",
+        "Nasdaq 100 (Top 100 Tech)": "^NDX",
+        "Russell 2000 (Small US Companies)": "^RUT",
+        "FTSE 100 (Top 100 UK Companies)": "^FTSE",
+        "DAX (Top 40 German Companies)": "^GDAXI",
+        "Nikkei 225 (Top 225 Japan)": "^N225",
+        "Hang Seng (Top Hong Kong)": "^HSI",
+        "CAC 40 (Top 40 French Companies)": "^FCHI",
+        "ASX 200 (Top 200 Australia)": "^AXJO",
+    },
+    "💱 Forex": {
+        "Euro → US Dollar": "EURUSD=X",
+        "British Pound → US Dollar": "GBPUSD=X",
+        "US Dollar → Japanese Yen": "USDJPY=X",
+        "US Dollar → Swiss Franc": "USDCHF=X",
+        "Australian Dollar → US Dollar": "AUDUSD=X",
+        "US Dollar → Canadian Dollar": "USDCAD=X",
+        "New Zealand Dollar → US Dollar": "NZDUSD=X",
+        "US Dollar → Chinese Yuan": "USDCNY=X",
+        "US Dollar → Hong Kong Dollar": "USDHKD=X",
+        "US Dollar → Singapore Dollar": "USDSGD=X",
+        "US Dollar → South Korean Won": "USDKRW=X",
+        "US Dollar → Indian Rupee": "USDINR=X",
+        "US Dollar → Mexican Peso": "USDMXN=X",
+        "US Dollar → Brazilian Real": "USDBRL=X",
+        "US Dollar → Turkish Lira": "USDTRY=X",
+        "US Dollar → South African Rand": "USDZAR=X",
+        "US Dollar → Swedish Krona": "USDSEK=X",
+        "Euro → British Pound": "EURGBP=X",
+        "Euro → Japanese Yen": "EURJPY=X",
+        "British Pound → Japanese Yen": "GBPJPY=X",
+        "US Dollar → Uzbek Som": "USDUZS=X",
+    },
+    "🥇 Metals": {
+        "Gold (Safe Haven Asset)": "GC=F",
+        "Silver (Industrial & Investment)": "SI=F",
+        "Platinum (Auto Catalysts)": "PL=F",
+        "Palladium (Auto Catalysts)": "PA=F",
+        "Copper (Industrial Metal)": "HG=F",
+        "Aluminum (Industrial Metal)": "ALI=F",
+    },
+    "🛢️ Energy Commodities": {
+        "Crude Oil WTI (US Benchmark)": "CL=F",
+        "Brent Oil (Global Benchmark)": "BZ=F",
+        "Natural Gas (Heating & Power)": "NG=F",
+        "Gasoline (Motor Fuel)": "RB=F",
+        "Heating Oil (Winter Fuel)": "HO=F",
+    },
+    "🌾 Agriculture": {
+        "Wheat (Bread & Pasta)": "ZW=F",
+        "Corn (Food & Ethanol)": "ZC=F",
+        "Soybeans (Food & Feed)": "ZS=F",
+        "Sugar (Food Industry)": "SB=F",
+        "Coffee (Beverages)": "KC=F",
+        "Cocoa (Chocolate)": "CC=F",
+        "Cotton (Textile)": "CT=F",
+        "Rice (Staple Food)": "ZR=F",
+    },
+    "📦 ETFs (Funds)": {
+        "S&P 500 Index Fund (SPY)": "SPY",
+        "Nasdaq 100 Index Fund (QQQ)": "QQQ",
+        "Gold Fund (GLD)": "GLD",
+        "Oil Fund (USO)": "USO",
+        "US Bond Fund (TLT)": "TLT",
+        "Emerging Markets Fund (EEM)": "EEM",
+        "Bitcoin Spot ETF (IBIT)": "IBIT",
+        "Ethereum Spot ETF (ETHA)": "ETHA",
+    },
+    "✏️ Custom": {
         "Manual input": "__custom__",
     },
 }
@@ -63,276 +190,332 @@ def inject_css() -> None:
     st.markdown(
         """
         <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
 
         html, body, [class*="css"] {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
         }
 
         .stApp {
-            background: #0b1220;
-            color: #f8fafc;
+            background: #080c14;
+            color: #e2e8f0;
         }
 
         .block-container {
-            max-width: 1400px;
-            padding-top: 4.5rem;
-            padding-bottom: 2rem;
+            max-width: 1440px;
+            padding-top: 2rem;
+            padding-bottom: 3rem;
         }
 
         [data-testid="stSidebar"] {
-            background: #0f172a;
-            border-right: 1px solid rgba(148,163,184,0.12);
+            background: #0c1220;
+            border-right: 1px solid rgba(99,179,237,0.08);
         }
 
         [data-testid="stSidebar"] * {
-            color: #e5e7eb !important;
+            color: #cbd5e1 !important;
         }
 
         div[data-baseweb="select"] > div,
         div[data-baseweb="input"] > div {
-            background: #111827 !important;
-            border: 1px solid rgba(148,163,184,0.16) !important;
-            border-radius: 12px !important;
-            color: white !important;
+            background: #0f1928 !important;
+            border: 1px solid rgba(99,179,237,0.15) !important;
+            border-radius: 10px !important;
+            color: #e2e8f0 !important;
+            font-family: 'Space Grotesk', sans-serif !important;
         }
 
         label, .stSelectbox label, .stTextInput label {
-            color: #cbd5e1 !important;
+            color: #94a3b8 !important;
             font-weight: 600 !important;
+            font-size: 0.78rem !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.08em !important;
         }
 
         div.stButton > button {
             width: 100%;
-            border: 0;
-            border-radius: 12px;
-            padding: 0.85rem 1rem;
+            border: 1px solid rgba(99,179,237,0.25);
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
             font-weight: 700;
-            color: white;
-            background: #2563eb;
+            font-family: 'Space Grotesk', sans-serif;
+            color: #e2e8f0;
+            background: linear-gradient(135deg, #1a3a5c 0%, #0f2440 100%);
+            transition: all 0.2s;
+            letter-spacing: 0.04em;
         }
 
         div.stButton > button:hover {
-            background: #1d4ed8;
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            border-color: rgba(99,179,237,0.5);
+            color: white;
         }
 
         .page-title {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #f8fafc;
-            margin-bottom: 0.25rem;
-             margin-bottom: 0.35rem;
-             line-height: 1.15;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #f1f5f9;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.2rem;
+            line-height: 1.1;
+        }
+
+        .page-title span {
+            color: #3b82f6;
         }
 
         .page-subtitle {
-            color: #94a3b8;
-            font-size: 1rem;
+            color: #64748b;
+            font-size: 0.95rem;
             margin-bottom: 1.5rem;
-            line-height: 1.6;
         }
 
-        .empty-state {
-            border: 1px solid rgba(148,163,184,0.12);
-            border-radius: 18px;
-            background: #0f172a;
-            padding: 56px 28px;
-            text-align: center;
-            margin-top: 12px;
+        .card {
+            border: 1px solid rgba(99,179,237,0.1);
+            border-radius: 16px;
+            background: #0c1828;
+            padding: 20px;
+            margin-bottom: 14px;
         }
 
-        .empty-title {
-            font-size: 1.5rem;
+        .card-sm {
+            border: 1px solid rgba(99,179,237,0.1);
+            border-radius: 14px;
+            background: #0c1828;
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+
+        .section-label {
+            font-size: 0.72rem;
+            color: #3b82f6;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
             font-weight: 700;
-            color: #f8fafc;
             margin-bottom: 10px;
         }
 
-        .empty-subtitle {
-            font-size: 1rem;
-            color: #94a3b8;
-            line-height: 1.7;
-        }
-
-        .hero-card,
-        .content-card,
-        .info-card,
-        .metric-card {
-            border: 1px solid rgba(148,163,184,0.12);
-            border-radius: 18px;
-            background: #0f172a;
-            box-shadow: none;
-        }
-
-        .hero-card {
-            padding: 22px;
-            margin-bottom: 16px;
-        }
-
-        .content-card,
-        .info-card {
-            padding: 18px;
-            margin-bottom: 16px;
-        }
-
-        .metric-card {
-            padding: 18px;
+        .metric-value {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #f1f5f9;
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1;
         }
 
         .metric-label {
-            font-size: 0.78rem;
+            font-size: 0.72rem;
             color: #64748b;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .metric-value {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #f8fafc;
-            line-height: 1.05;
-        }
-
-        .metric-sub {
-            margin-top: 8px;
-            color: #94a3b8;
-            font-size: 0.9rem;
-        }
-
-        .section-title {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #f8fafc;
-            margin: 6px 0 12px 0;
-        }
-
-        .signal-box {
-            border: 1px solid rgba(148,163,184,0.12);
-            border-radius: 18px;
-            background: #111827;
-            padding: 18px;
-        }
-
-        .signal-action {
-            font-size: 2rem;
-            font-weight: 800;
-            color: #f8fafc;
+            letter-spacing: 0.1em;
+            font-weight: 600;
             margin-bottom: 6px;
         }
 
-        .signal-meta {
-            color: #94a3b8;
-            font-size: 0.96rem;
-            line-height: 1.6;
+        .metric-sub {
+            font-size: 0.82rem;
+            color: #475569;
+            margin-top: 6px;
         }
 
-        .signal-row {
+        .signal-action {
+            font-size: 2.8rem;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .signal-action.buy { color: #22c55e; }
+        .signal-action.sell { color: #ef4444; }
+        .signal-action.hold { color: #f59e0b; }
+
+        .signal-meta {
+            color: #94a3b8;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            margin-bottom: 14px;
+        }
+
+        .signal-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            margin-top: 14px;
+            gap: 10px;
         }
 
         .signal-mini {
-            border: 1px solid rgba(148,163,184,0.12);
-            border-radius: 14px;
-            background: #0b1324;
+            background: #080c14;
+            border: 1px solid rgba(99,179,237,0.08);
+            border-radius: 10px;
             padding: 12px;
         }
 
         .signal-mini-label {
-            font-size: 0.72rem;
-            color: #64748b;
+            font-size: 0.68rem;
+            color: #475569;
             text-transform: uppercase;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.1em;
             font-weight: 700;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
         }
 
         .signal-mini-value {
-            font-size: 1rem;
-            color: #f8fafc;
+            font-size: 0.95rem;
             font-weight: 700;
-        }
-
-        .reason-step {
-            border: 1px solid rgba(148,163,184,0.10);
-            border-radius: 12px;
-            background: #111827;
-            padding: 12px;
-            color: #e5e7eb;
-            margin-bottom: 10px;
-        }
-
-        .news-item {
-            border-bottom: 1px solid rgba(148,163,184,0.10);
-            padding: 12px 0;
-        }
-
-        .news-item:last-child {
-            border-bottom: none;
-        }
-
-        .news-title {
-            font-size: 0.98rem;
-            font-weight: 600;
-            color: #f8fafc;
-            margin-bottom: 4px;
-        }
-
-        .news-meta {
-            color: #94a3b8;
-            font-size: 0.9rem;
-        }
-
-        .footer-note {
-            color: #64748b;
-            text-align: center;
-            margin-top: 14px;
-            font-size: 0.9rem;
-        }
-
-        .execution-status-ok {
-            color: #22c55e;
-            font-weight: 700;
-        }
-
-        .execution-status-warn {
-            color: #f59e0b;
-            font-weight: 700;
-        }
-
-        .execution-status-bad {
-            color: #ef4444;
-            font-weight: 700;
+            color: #e2e8f0;
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .workflow-step {
-            border: 1px solid rgba(148,163,184,0.10);
-            border-radius: 12px;
-            background: #111827;
-            padding: 12px;
-            color: #e5e7eb;
-            margin-bottom: 10px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(99,179,237,0.06);
         }
 
-        .workflow-step-title {
-            font-size: 0.82rem;
+        .workflow-step:last-child { border-bottom: none; }
+
+        .workflow-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #3b82f6;
+            margin-top: 6px;
+            flex-shrink: 0;
+        }
+
+        .workflow-title {
+            font-size: 0.75rem;
             color: #64748b;
             text-transform: uppercase;
             letter-spacing: 0.08em;
             font-weight: 700;
-            margin-bottom: 6px;
+            margin-bottom: 3px;
         }
 
-        .workflow-step-value {
-            font-size: 0.98rem;
-            color: #f8fafc;
-            font-weight: 600;
+        .workflow-value {
+            font-size: 0.9rem;
+            color: #cbd5e1;
             line-height: 1.5;
         }
+
+        .reason-step {
+            background: #080c14;
+            border: 1px solid rgba(99,179,237,0.08);
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-bottom: 8px;
+            color: #cbd5e1;
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        .reason-step b {
+            color: #3b82f6;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .news-item {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(99,179,237,0.06);
+        }
+
+        .news-item:last-child { border-bottom: none; }
+
+        .news-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-bottom: 5px;
+            line-height: 1.4;
+        }
+
+        .news-title a {
+            color: #e2e8f0;
+            text-decoration: none;
+        }
+
+        .news-title a:hover { color: #3b82f6; }
+
+        .news-meta {
+            font-size: 0.8rem;
+            color: #475569;
+        }
+
+        .sentiment-pos { color: #22c55e; }
+        .sentiment-neg { color: #ef4444; }
+        .sentiment-neu { color: #94a3b8; }
+
+        .risk-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(99,179,237,0.06);
+            font-size: 0.9rem;
+        }
+
+        .risk-row:last-child { border-bottom: none; }
+        .risk-key { color: #64748b; font-weight: 600; }
+        .risk-val { color: #e2e8f0; font-family: 'JetBrains Mono', monospace; }
+
+        .status-ok { color: #22c55e; font-weight: 700; }
+        .status-warn { color: #f59e0b; font-weight: 700; }
+        .status-bad { color: #ef4444; font-weight: 700; }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            border: 1px solid rgba(99,179,237,0.2);
+            background: rgba(99,179,237,0.08);
+        }
+
+        .badge-live { color: #22c55e; border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.08); }
+        .badge-fallback { color: #f59e0b; border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.08); }
+
+        .empty-state {
+            border: 1px dashed rgba(99,179,237,0.15);
+            border-radius: 20px;
+            background: #0c1220;
+            padding: 64px 28px;
+            text-align: center;
+            margin-top: 16px;
+        }
+
+        .empty-icon { font-size: 3rem; margin-bottom: 16px; }
+
+        .empty-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 10px;
+        }
+
+        .empty-subtitle {
+            font-size: 0.95rem;
+            color: #475569;
+            line-height: 1.7;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .sidebar-logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #f1f5f9;
+            letter-spacing: -0.01em;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(99,179,237,0.1);
+        }
+
+        .sidebar-logo span { color: #3b82f6; }
         </style>
         """,
         unsafe_allow_html=True,
@@ -364,7 +547,7 @@ def analyze_symbol(base_url: str, symbol: str, period: str, interval: str) -> di
             detail = response.json().get("detail", response.text)
         except Exception:
             detail = response.text
-        raise RuntimeError(f"Backend xatosi: {detail}")
+        raise RuntimeError(f"Backend error: {detail}")
 
     return response.json()
 
@@ -372,7 +555,7 @@ def analyze_symbol(base_url: str, symbol: str, period: str, interval: str) -> di
 def render_metric_card(label: str, value: str, sub: str = "") -> None:
     st.markdown(
         f"""
-        <div class="metric-card">
+        <div class="card-sm">
             <div class="metric-label">{label}</div>
             <div class="metric-value">{value}</div>
             <div class="metric-sub">{sub}</div>
@@ -384,7 +567,7 @@ def render_metric_card(label: str, value: str, sub: str = "") -> None:
 
 def render_price_chart(prices: list[float], symbol: str) -> None:
     if not prices:
-        st.info("Narx ma'lumotlari topilmadi.")
+        st.info("No price data available.")
         return
 
     fig = go.Figure()
@@ -394,20 +577,20 @@ def render_price_chart(prices: list[float], symbol: str) -> None:
             y=prices,
             mode="lines",
             name=symbol,
-            line=dict(width=2),
+            line=dict(width=2, color="#3b82f6"),
             fill="tozeroy",
-            fillcolor="rgba(59,130,246,0.12)",
+            fillcolor="rgba(59,130,246,0.08)",
         )
     )
     fig.update_layout(
-        height=420,
+        height=380,
         margin=dict(l=10, r=10, t=10, b=10),
         paper_bgcolor="rgba(0,0,0,0)",
-        plot_bgcolor="#0b1324",
-        font=dict(color="#e5e7eb"),
+        plot_bgcolor="#080c14",
+        font=dict(color="#64748b", family="JetBrains Mono"),
         showlegend=False,
-        xaxis=dict(showgrid=True, gridcolor="rgba(148,163,184,0.08)", zeroline=False),
-        yaxis=dict(showgrid=True, gridcolor="rgba(148,163,184,0.08)", zeroline=False),
+        xaxis=dict(showgrid=True, gridcolor="rgba(99,179,237,0.05)", zeroline=False, tickfont=dict(size=10)),
+        yaxis=dict(showgrid=True, gridcolor="rgba(99,179,237,0.05)", zeroline=False, tickfont=dict(size=10)),
     )
     st.plotly_chart(fig, use_container_width=True)
 
@@ -417,40 +600,40 @@ def render_confidence_gauge(confidence: float) -> None:
         go.Indicator(
             mode="gauge+number",
             value=confidence,
-            number={"suffix": "%", "font": {"size": 34, "color": "#f8fafc"}},
+            number={"suffix": "%", "font": {"size": 32, "color": "#f1f5f9", "family": "JetBrains Mono"}},
             gauge={
-                "axis": {"range": [0, 100], "tickcolor": "#94a3b8"},
-                "bar": {"color": "#2563eb"},
+                "axis": {"range": [0, 100], "tickcolor": "#475569", "tickfont": {"size": 10}},
+                "bar": {"color": "#3b82f6"},
                 "bgcolor": "rgba(0,0,0,0)",
                 "borderwidth": 1,
-                "bordercolor": "rgba(148,163,184,0.14)",
+                "bordercolor": "rgba(99,179,237,0.1)",
                 "steps": [
-                    {"range": [0, 35], "color": "rgba(239,68,68,0.20)"},
-                    {"range": [35, 65], "color": "rgba(250,204,21,0.18)"},
-                    {"range": [65, 100], "color": "rgba(34,197,94,0.18)"},
+                    {"range": [0, 35], "color": "rgba(239,68,68,0.15)"},
+                    {"range": [35, 65], "color": "rgba(250,204,21,0.12)"},
+                    {"range": [65, 100], "color": "rgba(34,197,94,0.15)"},
                 ],
             },
-            title={"text": "Confidence", "font": {"size": 18, "color": "#cbd5e1"}},
+            title={"text": "Decision Confidence", "font": {"size": 13, "color": "#64748b"}},
         )
     )
-    fig.update_layout(height=250, margin=dict(l=0, r=0, t=30, b=0), paper_bgcolor="rgba(0,0,0,0)")
+    fig.update_layout(height=230, margin=dict(l=0, r=0, t=30, b=0), paper_bgcolor="rgba(0,0,0,0)")
     st.plotly_chart(fig, use_container_width=True)
 
 
 def render_reasoning(steps: list[str]) -> None:
     if not steps:
-        st.info("Reasoning ma'lumotlari topilmadi.")
+        st.info("No reasoning steps available.")
         return
     for idx, step in enumerate(steps, start=1):
         st.markdown(
-            f'<div class="reason-step"><b>Step {idx}:</b> {step}</div>',
+            f'<div class="reason-step"><b>#{idx}</b> {step}</div>',
             unsafe_allow_html=True,
         )
 
 
 def render_articles(articles: list[dict[str, Any]]) -> None:
     if not articles:
-        st.info("Yangiliklar topilmadi.")
+        st.info("No news articles found.")
         return
 
     for article in articles:
@@ -460,8 +643,11 @@ def render_articles(articles: list[dict[str, Any]]) -> None:
         published = article.get("published_at") or "Unknown time"
         sentiment = float(article.get("sentiment_score", 0.0))
 
+        sent_class = "sentiment-pos" if sentiment > 0.1 else "sentiment-neg" if sentiment < -0.1 else "sentiment-neu"
+        sent_arrow = "▲" if sentiment > 0.1 else "▼" if sentiment < -0.1 else "●"
+
         title_html = (
-            f'<a href="{link}" target="_blank" style="color:#f8fafc;text-decoration:none;">{title}</a>'
+            f'<a href="{link}" target="_blank">{title}</a>'
             if link else title
         )
 
@@ -469,7 +655,11 @@ def render_articles(articles: list[dict[str, Any]]) -> None:
             f"""
             <div class="news-item">
                 <div class="news-title">{title_html}</div>
-                <div class="news-meta">{publisher} · {published} · sentiment {sentiment:+.2f}</div>
+                <div class="news-meta">
+                    {publisher} · {published}
+                    &nbsp;·&nbsp;
+                    <span class="{sent_class}">{sent_arrow} {sentiment:+.2f}</span>
+                </div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -493,26 +683,25 @@ def build_ai_insight(news: dict[str, Any], decision: dict[str, Any], risk: dict[
 
     direction = "bullish" if sentiment_score > 0.15 else "bearish" if sentiment_score < -0.15 else "mixed"
     return (
-        f"AI summary is unavailable from the backend, so this fallback insight was generated in the UI. "
-        f"Market trend is {trend}, current price is ${current_price:,.2f}, momentum is {momentum:+.2f}% and volatility is {volatility:.2f}%. "
-        f"News sentiment is {sentiment_label} ({sentiment_score:+.2f}), which looks {direction}. "
-        f"The system decision is {action} with {confidence:.1f}% confidence under {risk_level} risk conditions."
+        f"Market trend is {trend} with current price at ${current_price:,.2f}. "
+        f"Momentum is {momentum:+.2f}% and annualized volatility is {volatility:.2f}%. "
+        f"News sentiment is {sentiment_label} ({sentiment_score:+.2f}), indicating a {direction} outlook. "
+        f"System decision: {action} with {confidence:.1f}% confidence under {risk_level} risk conditions."
     )
 
 
 def render_ai_insight(ai_summary: str, used_backend_ai: bool) -> None:
-    badge = "LIVE AI" if used_backend_ai else "UI FALLBACK"
-    badge_color = "#22c55e" if used_backend_ai else "#f59e0b"
+    badge_class = "badge-live" if used_backend_ai else "badge-fallback"
+    badge_text = "LIVE AI" if used_backend_ai else "UI FALLBACK"
 
-    st.markdown('<div class="section-title">AI Insight</div>', unsafe_allow_html=True)
     st.markdown(
         f"""
-        <div class="content-card">
-            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px;">
-                <div style="font-size:1.05rem;font-weight:700;color:#f8fafc;">Market Narrative</div>
-                <div style="padding:6px 10px;border-radius:999px;background:rgba(148,163,184,0.10);border:1px solid rgba(148,163,184,0.14);color:{badge_color};font-size:0.78rem;font-weight:800;letter-spacing:0.06em;">{badge}</div>
+        <div class="card">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+                <div class="section-label">AI Market Narrative</div>
+                <div class="badge {badge_class}">{badge_text}</div>
             </div>
-            <div style="color:#e5e7eb; line-height:1.75; font-size:1rem;">
+            <div style="color:#cbd5e1; line-height:1.8; font-size:0.95rem;">
                 {ai_summary}
             </div>
         </div>
@@ -523,15 +712,12 @@ def render_ai_insight(ai_summary: str, used_backend_ai: bool) -> None:
 
 def get_execution_status(kraken_trade: dict[str, Any] | None) -> tuple[str, str]:
     if not kraken_trade:
-        return "Unknown", "execution-status-warn"
-
+        return "Unknown", "status-warn"
     if kraken_trade.get("executed"):
-        return "Executed", "execution-status-ok"
-
+        return "Executed", "status-ok"
     if kraken_trade.get("error"):
-        return "Failed", "execution-status-bad"
-
-    return "Skipped", "execution-status-warn"
+        return "Failed", "status-bad"
+    return "Skipped", "status-warn"
 
 
 def build_agent_workflow(
@@ -548,19 +734,17 @@ def build_agent_workflow(
     risk_score = risk.get("risk_score", "Unknown")
     action = decision.get("action", "Unknown")
     confidence = float(decision.get("confidence", 0.0) or 0.0)
-
     exec_status, _ = get_execution_status(kraken_trade)
     exec_mode = kraken_trade.get("mode", "-") if kraken_trade else "-"
     exec_note = kraken_trade.get("note", "-") if kraken_trade else "-"
-    exec_action = kraken_trade.get("action", action) if kraken_trade else action
 
     return [
-        ("Observed market", f"Market data collected. Trend detected: {trend}."),
-        ("Analyzed sentiment", f"News sentiment: {sentiment_label} ({sentiment_score:+.2f})."),
-        ("Assessed risk", f"Risk level: {risk_level}. Risk score: {risk_score}."),
-        ("Made decision", f"Decision: {action} with {confidence:.1f}% confidence."),
-        ("Attempted execution", f"Execution status: {exec_status}. Mode: {exec_mode}. Action: {exec_action}."),
-        ("Logged outcome", str(exec_note)),
+        ("Market Agent", f"Collected market data. Trend: {trend}."),
+        ("News Agent", f"Sentiment: {sentiment_label} ({sentiment_score:+.2f})."),
+        ("Risk Agent", f"Risk level: {risk_level}. Score: {risk_score}."),
+        ("Decision Agent", f"Action: {action} with {confidence:.1f}% confidence."),
+        ("Execution Agent", f"Status: {exec_status}. Mode: {exec_mode}."),
+        ("Receipt Logger", str(exec_note)),
     ]
 
 
@@ -576,8 +760,11 @@ def render_agent_workflow(
         st.markdown(
             f"""
             <div class="workflow-step">
-                <div class="workflow-step-title">{title}</div>
-                <div class="workflow-step-value">{value}</div>
+                <div class="workflow-dot"></div>
+                <div>
+                    <div class="workflow-title">{title}</div>
+                    <div class="workflow-value">{value}</div>
+                </div>
             </div>
             """,
             unsafe_allow_html=True,
@@ -589,12 +776,7 @@ def render_execution_panel(kraken_trade: dict[str, Any] | None) -> None:
 
     if not kraken_trade:
         st.markdown(
-            """
-            <div class="info-card">
-                <div><b>Status:</b> <span class="execution-status-warn">Unknown</span></div>
-                <div style="margin-top:8px;">Execution data topilmadi.</div>
-            </div>
-            """,
+            f'<div class="card-sm"><div class="risk-row"><span class="risk-key">Status</span><span class="{status_class}">{status}</span></div></div>',
             unsafe_allow_html=True,
         )
         return
@@ -605,36 +787,37 @@ def render_execution_panel(kraken_trade: dict[str, Any] | None) -> None:
     note = kraken_trade.get("note", "-")
     error = kraken_trade.get("error")
 
-    html = f"""
-    <div class="info-card">
-        <div><b>Status:</b> <span class="{status_class}">{status}</span></div>
-        <div style="margin-top:8px;"><b>Mode:</b> {mode}</div>
-        <div style="margin-top:8px;"><b>Action:</b> {action}</div>
-        <div style="margin-top:8px;"><b>Volume:</b> {volume}</div>
-        <div style="margin-top:8px;"><b>Note:</b> {note}</div>
-    """
-
+    rows = [
+        ("Status", f'<span class="{status_class}">{status}</span>'),
+        ("Mode", mode),
+        ("Action", action),
+        ("Volume", str(volume)),
+        ("Note", note),
+    ]
     if error:
-        html += f'<div style="margin-top:8px;"><b>Error:</b> {error}</div>'
+        rows.append(("Error", f'<span class="status-bad">{error}</span>'))
 
-    html += "</div>"
-    st.markdown(html, unsafe_allow_html=True)
+    rows_html = "".join(
+        f'<div class="risk-row"><span class="risk-key">{k}</span><span class="risk-val">{v}</span></div>'
+        for k, v in rows
+    )
+    st.markdown(f'<div class="card-sm">{rows_html}</div>', unsafe_allow_html=True)
 
 
-if "analyzed" not in st.session_state:
-    st.session_state.analyzed = False
-
-if "result" not in st.session_state:
-    st.session_state.result = None
-
-if "last_error" not in st.session_state:
-    st.session_state.last_error = None
+# ── Session state ──────────────────────────────────────────────────────────────
+for key in ("analyzed", "result", "last_error"):
+    if key not in st.session_state:
+        st.session_state[key] = False if key == "analyzed" else None
 
 inject_css()
 backend_url = get_backend_url()
 
+# ── Sidebar ────────────────────────────────────────────────────────────────────
 with st.sidebar:
-    st.markdown("## AI Trading Agents")
+    st.markdown(
+        '<div class="sidebar-logo">⬡ AI <span>Trading</span> Agents</div>',
+        unsafe_allow_html=True,
+    )
 
     category = st.selectbox("Category", list(POPULAR_TICKERS.keys()), index=0)
     asset_name = st.selectbox("Asset", list(POPULAR_TICKERS[category].keys()))
@@ -648,8 +831,9 @@ with st.sidebar:
     period = st.selectbox("Period", PERIODS, index=1)
     interval = st.selectbox("Interval", INTERVALS, index=0)
 
-    analyze_clicked = st.button("Analyze", use_container_width=True)
-    reset_clicked = st.button("Reset", use_container_width=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+    analyze_clicked = st.button("▶ Run Analysis", use_container_width=True)
+    reset_clicked = st.button("↺ Reset", use_container_width=True)
 
 if reset_clicked:
     st.session_state.analyzed = False
@@ -657,15 +841,17 @@ if reset_clicked:
     st.session_state.last_error = None
     st.rerun()
 
+# ── Health check ───────────────────────────────────────────────────────────────
 try:
     _ = get_health(backend_url)
 except Exception as exc:
-    st.error(f"Backend bilan ulanishda xato: {exc}")
+    st.error(f"Cannot connect to backend: {exc}")
     st.stop()
 
+# ── Run analysis ───────────────────────────────────────────────────────────────
 if analyze_clicked:
     try:
-        with st.spinner(f"{symbol} bo‘yicha tahlil ishlayapti..."):
+        with st.spinner(f"Analyzing {symbol}..."):
             result = analyze_symbol(backend_url, symbol, period, interval)
         st.session_state.result = result
         st.session_state.analyzed = True
@@ -679,16 +865,26 @@ if analyze_clicked:
 if st.session_state.last_error:
     st.error(st.session_state.last_error)
 
-st.markdown('<div class="page-title">AI Trading Agents</div>', unsafe_allow_html=True)
-st.markdown('<div class="page-subtitle">Market analysis and decision support</div>', unsafe_allow_html=True)
+# ── Page header ────────────────────────────────────────────────────────────────
+st.markdown(
+    '<div class="page-title">AI <span>Trading</span> Agents</div>',
+    unsafe_allow_html=True,
+)
+st.markdown(
+    '<div class="page-subtitle">Autonomous multi-agent market analysis & decision support</div>',
+    unsafe_allow_html=True,
+)
 
+# ── Empty state ────────────────────────────────────────────────────────────────
 if not st.session_state.analyzed or not st.session_state.result:
     st.markdown(
         """
         <div class="empty-state">
-            <div class="empty-title">Choose an asset and run analysis</div>
+            <div class="empty-icon">📊</div>
+            <div class="empty-title">Select an asset and run analysis</div>
             <div class="empty-subtitle">
-                Chap tomondan asset, period va interval tanlang. Natijalar analizdan keyin shu sahifada chiqadi.
+                Choose a category and asset from the sidebar, set your period and interval,
+                then click <strong>Run Analysis</strong> to get AI-powered insights.
             </div>
         </div>
         """,
@@ -696,6 +892,7 @@ if not st.session_state.analyzed or not st.session_state.result:
     )
     st.stop()
 
+# ── Data extraction ────────────────────────────────────────────────────────────
 result = st.session_state.result
 market = result.get("market", {})
 news = result.get("news", {})
@@ -719,30 +916,31 @@ backend_ai_text = str(news.get("llm_explanation") or news.get("summary") or "").
 used_backend_ai = bool(backend_ai_text)
 ai_summary = build_ai_insight(news, decision, risk, market)
 
+action_class = action.lower() if action in ("BUY", "SELL", "HOLD") else "hold"
+
+# ── Signal hero ────────────────────────────────────────────────────────────────
 st.markdown(
     f"""
-    <div class="hero-card">
-        <div class="section-title">Signal</div>
-        <div class="signal-box">
-            <div class="signal-action">{action}</div>
-            <div class="signal-meta">{decision.get("explanation", "-")}</div>
-            <div class="signal-row">
-                <div class="signal-mini">
-                    <div class="signal-mini-label">Trend</div>
-                    <div class="signal-mini-value">{trend}</div>
-                </div>
-                <div class="signal-mini">
-                    <div class="signal-mini-label">Risk</div>
-                    <div class="signal-mini-value">{risk_level}</div>
-                </div>
-                <div class="signal-mini">
-                    <div class="signal-mini-label">Confidence</div>
-                    <div class="signal-mini-value">{confidence:.1f}%</div>
-                </div>
-                <div class="signal-mini">
-                    <div class="signal-mini-label">Entry</div>
-                    <div class="signal-mini-value">${float(decision.get("entry_price", current_price) or 0):,.2f}</div>
-                </div>
+    <div class="card">
+        <div class="section-label">Trading Signal</div>
+        <div class="signal-action {action_class}">{action}</div>
+        <div class="signal-meta">{decision.get("explanation", "No explanation provided.")}</div>
+        <div class="signal-grid">
+            <div class="signal-mini">
+                <div class="signal-mini-label">Trend</div>
+                <div class="signal-mini-value">{trend}</div>
+            </div>
+            <div class="signal-mini">
+                <div class="signal-mini-label">Risk</div>
+                <div class="signal-mini-value">{risk_level}</div>
+            </div>
+            <div class="signal-mini">
+                <div class="signal-mini-label">Confidence</div>
+                <div class="signal-mini-value">{confidence:.1f}%</div>
+            </div>
+            <div class="signal-mini">
+                <div class="signal-mini-label">Entry Price</div>
+                <div class="signal-mini-value">${float(decision.get("entry_price", current_price) or 0):,.2f}</div>
             </div>
         </div>
     </div>
@@ -752,6 +950,7 @@ st.markdown(
 
 render_ai_insight(ai_summary, used_backend_ai)
 
+# ── Key metrics ────────────────────────────────────────────────────────────────
 m1, m2, m3, m4 = st.columns(4)
 with m1:
     render_metric_card("Current Price", f"${current_price:,.2f}", "Latest market price")
@@ -760,89 +959,89 @@ with m2:
 with m3:
     render_metric_card("Volatility", f"{float(market.get('volatility_pct', 0)):.2f}%", "Annualized movement")
 with m4:
-    render_metric_card("Risk Score", f"{int(risk.get('risk_score', 0))}", "Model score")
+    render_metric_card("Risk Score", f"{int(risk.get('risk_score', 0))}/100", "Model risk score")
 
+# ── Main layout ────────────────────────────────────────────────────────────────
 left, right = st.columns([1.8, 1])
 
 with left:
-    st.markdown('<div class="section-title">Price Action</div>', unsafe_allow_html=True)
-    st.markdown('<div class="content-card">', unsafe_allow_html=True)
+    st.markdown('<div class="section-label">Price Action</div>', unsafe_allow_html=True)
+    st.markdown('<div class="card" style="padding:16px;">', unsafe_allow_html=True)
     render_price_chart(market.get("prices", []), result.get("symbol", symbol))
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown("</div>", unsafe_allow_html=True)
 
-    st.markdown('<div class="section-title">Agent Workflow</div>', unsafe_allow_html=True)
-    st.markdown('<div class="content-card">', unsafe_allow_html=True)
+    st.markdown('<div class="section-label">Agent Workflow</div>', unsafe_allow_html=True)
+    st.markdown('<div class="card">', unsafe_allow_html=True)
     render_agent_workflow(market, news, risk, decision, kraken_trade)
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown("</div>", unsafe_allow_html=True)
 
-    st.markdown('<div class="section-title">Reasoning</div>', unsafe_allow_html=True)
-    st.markdown('<div class="content-card">', unsafe_allow_html=True)
+    st.markdown('<div class="section-label">Reasoning Steps</div>', unsafe_allow_html=True)
+    st.markdown('<div class="card">', unsafe_allow_html=True)
     render_reasoning(reasoning_steps)
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown("</div>", unsafe_allow_html=True)
 
 with right:
-    st.markdown('<div class="section-title">Confidence</div>', unsafe_allow_html=True)
-    st.markdown('<div class="info-card">', unsafe_allow_html=True)
+    st.markdown('<div class="section-label">Confidence</div>', unsafe_allow_html=True)
+    st.markdown('<div class="card-sm">', unsafe_allow_html=True)
     render_confidence_gauge(confidence)
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.markdown("</div>", unsafe_allow_html=True)
 
-    st.markdown('<div class="section-title">Execution</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-label">Execution</div>', unsafe_allow_html=True)
     render_execution_panel(kraken_trade)
 
-    st.markdown('<div class="section-title">Risk</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-label">Risk Parameters</div>', unsafe_allow_html=True)
     st.markdown(
         f"""
-        <div class="info-card">
-            <div><b>Level:</b> {risk_level}</div>
-            <div><b>Position Size:</b> {risk.get("position_size_pct", "-")}%</div>
-            <div><b>Stop Loss:</b> {risk.get("stop_loss_pct", "-")}%</div>
-            <div><b>Take Profit:</b> {risk.get("take_profit_pct", "-")}%</div>
+        <div class="card-sm">
+            <div class="risk-row"><span class="risk-key">Risk Level</span><span class="risk-val">{risk_level}</span></div>
+            <div class="risk-row"><span class="risk-key">Position Size</span><span class="risk-val">{risk.get("position_size_pct", "-")}%</span></div>
+            <div class="risk-row"><span class="risk-key">Stop Loss</span><span class="risk-val">{risk.get("stop_loss_pct", "-")}%</span></div>
+            <div class="risk-row"><span class="risk-key">Take Profit</span><span class="risk-val">{risk.get("take_profit_pct", "-")}%</span></div>
+            <div class="risk-row"><span class="risk-key">Risk Score</span><span class="risk-val">{risk.get("risk_score", "-")}/100</span></div>
         </div>
         """,
         unsafe_allow_html=True,
     )
 
-    st.markdown('<div class="section-title">Portfolio</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-label">Portfolio</div>', unsafe_allow_html=True)
     st.markdown(
         f"""
-        <div class="info-card">
-            <div><b>Portfolio Value:</b> ${float(portfolio.get("ending_portfolio_value", 0)):,.2f}</div>
-            <div><b>PNL:</b> ${float(portfolio.get("pnl_value", 0)):,.2f}</div>
-            <div><b>PNL %:</b> {float(portfolio.get("pnl_pct", 0)):+.2f}%</div>
-            <div><b>Max Drawdown:</b> {float(portfolio.get("max_drawdown_pct", 0)):.2f}%</div>
+        <div class="card-sm">
+            <div class="risk-row"><span class="risk-key">Value</span><span class="risk-val">${float(portfolio.get("ending_portfolio_value", 0)):,.2f}</span></div>
+            <div class="risk-row"><span class="risk-key">PnL</span><span class="risk-val">${float(portfolio.get("pnl_value", 0)):,.2f}</span></div>
+            <div class="risk-row"><span class="risk-key">PnL %</span><span class="risk-val">{float(portfolio.get("pnl_pct", 0)):+.2f}%</span></div>
+            <div class="risk-row"><span class="risk-key">Max Drawdown</span><span class="risk-val">{float(portfolio.get("max_drawdown_pct", 0)):.2f}%</span></div>
         </div>
         """,
         unsafe_allow_html=True,
     )
 
-st.markdown('<div class="section-title">News</div>', unsafe_allow_html=True)
-st.markdown('<div class="content-card">', unsafe_allow_html=True)
+# ── News ───────────────────────────────────────────────────────────────────────
+st.markdown('<div class="section-label">Live News</div>', unsafe_allow_html=True)
+st.markdown('<div class="card">', unsafe_allow_html=True)
 render_articles(news.get("articles", []))
-st.markdown('</div>', unsafe_allow_html=True)
+st.markdown("</div>", unsafe_allow_html=True)
 
-with st.expander("Trade history", expanded=False):
+# ── Expandable sections ────────────────────────────────────────────────────────
+with st.expander("Trade History", expanded=False):
     if trade_history:
         st.dataframe(pd.DataFrame(trade_history), use_container_width=True, hide_index=True)
     else:
-        st.info("Trade history topilmadi.")
+        st.info("No trade history available.")
 
-with st.expander("Execution raw", expanded=False):
+with st.expander("Execution Raw Data", expanded=False):
     st.json(kraken_trade or {})
 
-with st.expander("Decision receipt", expanded=False):
+with st.expander("Decision Receipt", expanded=False):
     if receipt:
         st.json(receipt)
+    else:
+        st.info("No receipt available.")
 
-with st.expander("System details", expanded=False):
-    st.json(
-        {
-            "generated_at": generated_at,
-            "data_sources": data_sources,
-            "kraken_trade": kraken_trade,
-            "backend_ai_available": used_backend_ai,
-            "news_summary": news.get("summary"),
-            "news_llm_explanation": news.get("llm_explanation"),
-        }
-    )
-
-st.markdown('<div class="page-title">AI Trading Agents</div>', unsafe_allow_html=True)
+with st.expander("System Info", expanded=False):
+    st.json({
+        "generated_at": generated_at,
+        "data_sources": data_sources,
+        "backend_ai_available": used_backend_ai,
+        "news_summary": news.get("summary"),
+    })
