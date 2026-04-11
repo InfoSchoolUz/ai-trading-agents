@@ -254,13 +254,13 @@ def inject_css() -> None:
         }
 
         .page-title {
-            font-size: 2.2rem;
-            font-weight: 700;
+            font-size: 3.2rem;   /* ⬅️ KATTALASHDI */
+            font-weight: 800;    /* ⬅️ YANADA QALIN */
             color: #f1f5f9;
-            letter-spacing: -0.02em;
+            letter-spacing: -0.03em;
             margin-top: 1rem;
             margin-bottom: 0.5rem;
-            line-height: 1.2;
+            line-height: 1.1;
         }
 
         .page-title span {
