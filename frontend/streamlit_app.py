@@ -254,8 +254,8 @@ def inject_css() -> None:
         }
 
         .page-title {
-            font-size: 3.2rem;   /* ⬅️ KATTALASHDI */
-            font-weight: 800;    /* ⬅️ YANADA QALIN */
+            font-size: 3.2rem;
+            font-weight: 800;
             color: #f1f5f9;
             letter-spacing: -0.03em;
             margin-top: 1rem;
@@ -593,6 +593,18 @@ def analyze_symbol(base_url: str, symbol: str, period: str, interval: str) -> di
     return response.json()
 
 
+@st.cache_data(ttl=120, show_spinner=False)
+def get_initial_news(base_url: str, symbol: str, period: str, interval: str) -> dict[str, Any]:
+    try:
+        payload = {"symbol": symbol, "period": period, "interval": interval}
+        response = requests.post(f"{base_url}/analyze", json=payload, timeout=120)
+        if response.status_code >= 400:
+            return {}
+        return response.json()
+    except Exception:
+        return {}
+
+
 def render_metric_card(label: str, value: str, sub: str = "") -> None:
     st.markdown(
         f"""
@@ -687,10 +699,7 @@ def render_articles(articles: list[dict[str, Any]]) -> None:
         sent_class = "sentiment-pos" if sentiment > 0.1 else "sentiment-neg" if sentiment < -0.1 else "sentiment-neu"
         sent_arrow = "▲" if sentiment > 0.1 else "▼" if sentiment < -0.1 else "●"
 
-        title_html = (
-            f'<a href="{link}" target="_blank">{title}</a>'
-            if link else title
-        )
+        title_html = f'<a href="{link}" target="_blank">{title}</a>' if link else title
 
         st.markdown(
             f"""
@@ -916,173 +925,177 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# ── Empty state ────────────────────────────────────────────────────────────────
+# ── Default homepage data ──────────────────────────────────────────────────────
+initial_data = {}
 if not st.session_state.analyzed or not st.session_state.result:
+    initial_data = get_initial_news(backend_url, symbol, period, interval)
+
+# ── Conditional content ────────────────────────────────────────────────────────
+if st.session_state.analyzed and st.session_state.result:
+    result = st.session_state.result
+    market = result.get("market", {})
+    news = result.get("news", {})
+    risk = result.get("risk", {})
+    decision = result.get("decision", {})
+    portfolio = result.get("portfolio", {})
+    kraken_trade = result.get("kraken_trade", {})
+    receipt = result.get("receipt", {})
+    data_sources = result.get("data_sources", {})
+    generated_at = result.get("generated_at")
+    reasoning_steps = result.get("reasoning_steps", [])
+    trade_history = result.get("trade_history", [])
+
+    action = str(decision.get("action", "HOLD")).upper()
+    trend = str(market.get("trend", "SIDEWAYS")).upper()
+    risk_level = str(risk.get("risk_level", "HIGH")).upper()
+    confidence = float(decision.get("confidence", 0.0))
+    current_price = float(market.get("current_price", 0.0))
+
+    backend_ai_text = str(news.get("llm_explanation") or news.get("summary") or "").strip()
+    used_backend_ai = bool(backend_ai_text)
+    ai_summary = build_ai_insight(news, decision, risk, market)
+
+    action_class = action.lower() if action in ("BUY", "SELL", "HOLD") else "hold"
+
+    st.markdown(
+        f"""
+        <div class="card">
+            <div class="section-label">Trading Signal</div>
+            <div class="signal-action {action_class}">{action}</div>
+            <div class="signal-meta">{decision.get("explanation", "No explanation provided.")}</div>
+            <div class="signal-grid">
+                <div class="signal-mini">
+                    <div class="signal-mini-label">Trend</div>
+                    <div class="signal-mini-value">{trend}</div>
+                </div>
+                <div class="signal-mini">
+                    <div class="signal-mini-label">Risk</div>
+                    <div class="signal-mini-value">{risk_level}</div>
+                </div>
+                <div class="signal-mini">
+                    <div class="signal-mini-label">Confidence</div>
+                    <div class="signal-mini-value">{confidence:.1f}%</div>
+                </div>
+                <div class="signal-mini">
+                    <div class="signal-mini-label">Entry Price</div>
+                    <div class="signal-mini-value">${float(decision.get("entry_price", current_price) or 0):,.2f}</div>
+                </div>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    render_ai_insight(ai_summary, used_backend_ai)
+
+    m1, m2, m3, m4 = st.columns(4)
+    with m1:
+        render_metric_card("Current Price", f"${current_price:,.2f}", "Latest market price")
+    with m2:
+        render_metric_card("Momentum", f"{float(market.get('momentum_pct', 0)):+.2f}%", "Directional pressure")
+    with m3:
+        render_metric_card("Volatility", f"{float(market.get('volatility_pct', 0)):.2f}%", "Annualized movement")
+    with m4:
+        render_metric_card("Risk Score", f"{int(risk.get('risk_score', 0))}/100", "Model risk score")
+
+    left, right = st.columns([1.8, 1])
+
+    with left:
+        st.markdown('<div class="section-label">Price Action</div>', unsafe_allow_html=True)
+        st.markdown('<div class="card" style="padding:16px;">', unsafe_allow_html=True)
+        render_price_chart(market.get("prices", []), result.get("symbol", symbol))
+        st.markdown("</div>", unsafe_allow_html=True)
+
+        st.markdown('<div class="section-label">Agent Workflow</div>', unsafe_allow_html=True)
+        st.markdown('<div class="card">', unsafe_allow_html=True)
+        render_agent_workflow(market, news, risk, decision, kraken_trade)
+        st.markdown("</div>", unsafe_allow_html=True)
+
+        st.markdown('<div class="section-label">Reasoning Steps</div>', unsafe_allow_html=True)
+        st.markdown('<div class="card">', unsafe_allow_html=True)
+        render_reasoning(reasoning_steps)
+        st.markdown("</div>", unsafe_allow_html=True)
+
+    with right:
+        st.markdown('<div class="section-label">Confidence</div>', unsafe_allow_html=True)
+        st.markdown('<div class="card-sm">', unsafe_allow_html=True)
+        render_confidence_gauge(confidence)
+        st.markdown("</div>", unsafe_allow_html=True)
+
+        st.markdown('<div class="section-label">Execution</div>', unsafe_allow_html=True)
+        render_execution_panel(kraken_trade)
+
+        st.markdown('<div class="section-label">Risk Parameters</div>', unsafe_allow_html=True)
+        st.markdown(
+            f"""
+            <div class="card-sm">
+                <div class="risk-row"><span class="risk-key">Risk Level</span><span class="risk-val">{risk_level}</span></div>
+                <div class="risk-row"><span class="risk-key">Position Size</span><span class="risk-val">{risk.get("position_size_pct", "-")}%</span></div>
+                <div class="risk-row"><span class="risk-key">Stop Loss</span><span class="risk-val">{risk.get("stop_loss_pct", "-")}%</span></div>
+                <div class="risk-row"><span class="risk-key">Take Profit</span><span class="risk-val">{risk.get("take_profit_pct", "-")}%</span></div>
+                <div class="risk-row"><span class="risk-key">Risk Score</span><span class="risk-val">{risk.get("risk_score", "-")}/100</span></div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+        st.markdown('<div class="section-label">Portfolio</div>', unsafe_allow_html=True)
+        st.markdown(
+            f"""
+            <div class="card-sm">
+                <div class="risk-row"><span class="risk-key">Value</span><span class="risk-val">${float(portfolio.get("ending_portfolio_value", 0)):,.2f}</span></div>
+                <div class="risk-row"><span class="risk-key">PnL</span><span class="risk-val">${float(portfolio.get("pnl_value", 0)):,.2f}</span></div>
+                <div class="risk-row"><span class="risk-key">PnL %</span><span class="risk-val">{float(portfolio.get("pnl_pct", 0)):+.2f}%</span></div>
+                <div class="risk-row"><span class="risk-key">Max Drawdown</span><span class="risk-val">{float(portfolio.get("max_drawdown_pct", 0)):.2f}%</span></div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    st.markdown('<div class="section-label">Live News</div>', unsafe_allow_html=True)
+    st.markdown('<div class="card">', unsafe_allow_html=True)
+    render_articles(news.get("articles", []))
+    st.markdown("</div>", unsafe_allow_html=True)
+
+    with st.expander("Trade History", expanded=False):
+        if trade_history:
+            st.dataframe(pd.DataFrame(trade_history), use_container_width=True, hide_index=True)
+        else:
+            st.info("No trade history available.")
+
+    with st.expander("Execution Raw Data", expanded=False):
+        st.json(kraken_trade or {})
+
+    with st.expander("Decision Receipt", expanded=False):
+        if receipt:
+            st.json(receipt)
+        else:
+            st.info("No receipt available.")
+
+    with st.expander("System Info", expanded=False):
+        st.json({
+            "generated_at": generated_at,
+            "data_sources": data_sources,
+            "backend_ai_available": used_backend_ai,
+            "news_summary": news.get("summary"),
+        })
+
+else:
+    news = initial_data.get("news", {})
+    articles = news.get("articles", [])
+
     st.markdown(
         """
-        <div class="empty-state">
-            <div class="empty-icon">📊</div>
-            <div class="empty-title">Select an asset and run analysis</div>
-            <div class="empty-subtitle">
-                Choose a category and asset from the sidebar, set your period and interval,
-                then click <strong>Run Analysis</strong> to get AI-powered insights.
+        <div class="card">
+            <div class="section-label">Live Market News</div>
+            <div style="color:#94a3b8; margin-bottom:12px;">
+                Latest headlines are shown by default. Click <b>Run Analysis</b> to see full AI trading insights.
             </div>
         </div>
         """,
         unsafe_allow_html=True,
     )
-    st.stop()
 
-# ── Data extraction ────────────────────────────────────────────────────────────
-result = st.session_state.result
-market = result.get("market", {})
-news = result.get("news", {})
-risk = result.get("risk", {})
-decision = result.get("decision", {})
-portfolio = result.get("portfolio", {})
-kraken_trade = result.get("kraken_trade", {})
-receipt = result.get("receipt", {})
-data_sources = result.get("data_sources", {})
-generated_at = result.get("generated_at")
-reasoning_steps = result.get("reasoning_steps", [])
-trade_history = result.get("trade_history", [])
-
-action = str(decision.get("action", "HOLD")).upper()
-trend = str(market.get("trend", "SIDEWAYS")).upper()
-risk_level = str(risk.get("risk_level", "HIGH")).upper()
-confidence = float(decision.get("confidence", 0.0))
-current_price = float(market.get("current_price", 0.0))
-
-backend_ai_text = str(news.get("llm_explanation") or news.get("summary") or "").strip()
-used_backend_ai = bool(backend_ai_text)
-ai_summary = build_ai_insight(news, decision, risk, market)
-
-action_class = action.lower() if action in ("BUY", "SELL", "HOLD") else "hold"
-
-# ── Signal hero ────────────────────────────────────────────────────────────────
-st.markdown(
-    f"""
-    <div class="card">
-        <div class="section-label">Trading Signal</div>
-        <div class="signal-action {action_class}">{action}</div>
-        <div class="signal-meta">{decision.get("explanation", "No explanation provided.")}</div>
-        <div class="signal-grid">
-            <div class="signal-mini">
-                <div class="signal-mini-label">Trend</div>
-                <div class="signal-mini-value">{trend}</div>
-            </div>
-            <div class="signal-mini">
-                <div class="signal-mini-label">Risk</div>
-                <div class="signal-mini-value">{risk_level}</div>
-            </div>
-            <div class="signal-mini">
-                <div class="signal-mini-label">Confidence</div>
-                <div class="signal-mini-value">{confidence:.1f}%</div>
-            </div>
-            <div class="signal-mini">
-                <div class="signal-mini-label">Entry Price</div>
-                <div class="signal-mini-value">${float(decision.get("entry_price", current_price) or 0):,.2f}</div>
-            </div>
-        </div>
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
-
-render_ai_insight(ai_summary, used_backend_ai)
-
-# ── Key metrics ────────────────────────────────────────────────────────────────
-m1, m2, m3, m4 = st.columns(4)
-with m1:
-    render_metric_card("Current Price", f"${current_price:,.2f}", "Latest market price")
-with m2:
-    render_metric_card("Momentum", f"{float(market.get('momentum_pct', 0)):+.2f}%", "Directional pressure")
-with m3:
-    render_metric_card("Volatility", f"{float(market.get('volatility_pct', 0)):.2f}%", "Annualized movement")
-with m4:
-    render_metric_card("Risk Score", f"{int(risk.get('risk_score', 0))}/100", "Model risk score")
-
-# ── Main layout ────────────────────────────────────────────────────────────────
-left, right = st.columns([1.8, 1])
-
-with left:
-    st.markdown('<div class="section-label">Price Action</div>', unsafe_allow_html=True)
-    st.markdown('<div class="card" style="padding:16px;">', unsafe_allow_html=True)
-    render_price_chart(market.get("prices", []), result.get("symbol", symbol))
-    st.markdown("</div>", unsafe_allow_html=True)
-
-    st.markdown('<div class="section-label">Agent Workflow</div>', unsafe_allow_html=True)
     st.markdown('<div class="card">', unsafe_allow_html=True)
-    render_agent_workflow(market, news, risk, decision, kraken_trade)
+    render_articles(articles)
     st.markdown("</div>", unsafe_allow_html=True)
-
-    st.markdown('<div class="section-label">Reasoning Steps</div>', unsafe_allow_html=True)
-    st.markdown('<div class="card">', unsafe_allow_html=True)
-    render_reasoning(reasoning_steps)
-    st.markdown("</div>", unsafe_allow_html=True)
-
-with right:
-    st.markdown('<div class="section-label">Confidence</div>', unsafe_allow_html=True)
-    st.markdown('<div class="card-sm">', unsafe_allow_html=True)
-    render_confidence_gauge(confidence)
-    st.markdown("</div>", unsafe_allow_html=True)
-
-    st.markdown('<div class="section-label">Execution</div>', unsafe_allow_html=True)
-    render_execution_panel(kraken_trade)
-
-    st.markdown('<div class="section-label">Risk Parameters</div>', unsafe_allow_html=True)
-    st.markdown(
-        f"""
-        <div class="card-sm">
-            <div class="risk-row"><span class="risk-key">Risk Level</span><span class="risk-val">{risk_level}</span></div>
-            <div class="risk-row"><span class="risk-key">Position Size</span><span class="risk-val">{risk.get("position_size_pct", "-")}%</span></div>
-            <div class="risk-row"><span class="risk-key">Stop Loss</span><span class="risk-val">{risk.get("stop_loss_pct", "-")}%</span></div>
-            <div class="risk-row"><span class="risk-key">Take Profit</span><span class="risk-val">{risk.get("take_profit_pct", "-")}%</span></div>
-            <div class="risk-row"><span class="risk-key">Risk Score</span><span class="risk-val">{risk.get("risk_score", "-")}/100</span></div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    st.markdown('<div class="section-label">Portfolio</div>', unsafe_allow_html=True)
-    st.markdown(
-        f"""
-        <div class="card-sm">
-            <div class="risk-row"><span class="risk-key">Value</span><span class="risk-val">${float(portfolio.get("ending_portfolio_value", 0)):,.2f}</span></div>
-            <div class="risk-row"><span class="risk-key">PnL</span><span class="risk-val">${float(portfolio.get("pnl_value", 0)):,.2f}</span></div>
-            <div class="risk-row"><span class="risk-key">PnL %</span><span class="risk-val">{float(portfolio.get("pnl_pct", 0)):+.2f}%</span></div>
-            <div class="risk-row"><span class="risk-key">Max Drawdown</span><span class="risk-val">{float(portfolio.get("max_drawdown_pct", 0)):.2f}%</span></div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-# ── News ───────────────────────────────────────────────────────────────────────
-st.markdown('<div class="section-label">Live News</div>', unsafe_allow_html=True)
-st.markdown('<div class="card">', unsafe_allow_html=True)
-render_articles(news.get("articles", []))
-st.markdown("</div>", unsafe_allow_html=True)
-
-# ── Expandable sections ────────────────────────────────────────────────────────
-with st.expander("Trade History", expanded=False):
-    if trade_history:
-        st.dataframe(pd.DataFrame(trade_history), use_container_width=True, hide_index=True)
-    else:
-        st.info("No trade history available.")
-
-with st.expander("Execution Raw Data", expanded=False):
-    st.json(kraken_trade or {})
-
-with st.expander("Decision Receipt", expanded=False):
-    if receipt:
-        st.json(receipt)
-    else:
-        st.info("No receipt available.")
-
-with st.expander("System Info", expanded=False):
-    st.json({
-        "generated_at": generated_at,
-        "data_sources": data_sources,
-        "backend_ai_available": used_backend_ai,
-        "news_summary": news.get("summary"),
-    })
