@@ -193,25 +193,23 @@ def inject_css() -> None:
     st.markdown(
         """
         <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
-
         html, body, [class*="css"] {
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         .stApp {
-            background: #080c14;
+            background-color: #080c14;
             color: #e2e8f0;
         }
 
         .block-container {
             max-width: 1440px;
-            padding-top: 2rem;
+            padding-top: 5rem;
             padding-bottom: 3rem;
         }
 
         [data-testid="stSidebar"] {
-            background: #0c1220;
+            background-color: #0c1220;
             border-right: 1px solid rgba(99,179,237,0.08);
         }
 
@@ -221,11 +219,11 @@ def inject_css() -> None:
 
         div[data-baseweb="select"] > div,
         div[data-baseweb="input"] > div {
-            background: #0f1928 !important;
+            background-color: #0f1928 !important;
             border: 1px solid rgba(99,179,237,0.15) !important;
             border-radius: 10px !important;
             color: #e2e8f0 !important;
-            font-family: 'Space Grotesk', sans-serif !important;
+            font-family: Arial, Helvetica, sans-serif !important;
         }
 
         label, .stSelectbox label, .stTextInput label {
@@ -242,7 +240,7 @@ def inject_css() -> None:
             border-radius: 10px;
             padding: 0.75rem 1rem;
             font-weight: 700;
-            font-family: 'Space Grotesk', sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             color: #e2e8f0;
             background: linear-gradient(135deg, #1a3a5c 0%, #0f2440 100%);
             transition: all 0.2s;
@@ -260,8 +258,9 @@ def inject_css() -> None:
             font-weight: 700;
             color: #f1f5f9;
             letter-spacing: -0.02em;
-            margin-bottom: 0.2rem;
-            line-height: 1.1;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
         }
 
         .page-title span {
@@ -271,13 +270,13 @@ def inject_css() -> None:
         .page-subtitle {
             color: #64748b;
             font-size: 0.95rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.8rem;
         }
 
         .card {
             border: 1px solid rgba(99,179,237,0.1);
             border-radius: 16px;
-            background: #0c1828;
+            background-color: #0c1828;
             padding: 20px;
             margin-bottom: 14px;
         }
@@ -285,7 +284,7 @@ def inject_css() -> None:
         .card-sm {
             border: 1px solid rgba(99,179,237,0.1);
             border-radius: 14px;
-            background: #0c1828;
+            background-color: #0c1828;
             padding: 16px;
             margin-bottom: 12px;
         }
@@ -303,7 +302,6 @@ def inject_css() -> None:
             font-size: 1.9rem;
             font-weight: 700;
             color: #f1f5f9;
-            font-family: 'JetBrains Mono', monospace;
             line-height: 1;
         }
 
@@ -325,7 +323,6 @@ def inject_css() -> None:
         .signal-action {
             font-size: 2.8rem;
             font-weight: 700;
-            font-family: 'JetBrains Mono', monospace;
             letter-spacing: -0.02em;
             line-height: 1;
             margin-bottom: 8px;
@@ -349,7 +346,7 @@ def inject_css() -> None:
         }
 
         .signal-mini {
-            background: #080c14;
+            background-color: #080c14;
             border: 1px solid rgba(99,179,237,0.08);
             border-radius: 10px;
             padding: 12px;
@@ -368,7 +365,6 @@ def inject_css() -> None:
             font-size: 0.95rem;
             font-weight: 700;
             color: #e2e8f0;
-            font-family: 'JetBrains Mono', monospace;
         }
 
         .workflow-step {
@@ -379,13 +375,15 @@ def inject_css() -> None:
             border-bottom: 1px solid rgba(99,179,237,0.06);
         }
 
-        .workflow-step:last-child { border-bottom: none; }
+        .workflow-step:last-child {
+            border-bottom: none;
+        }
 
         .workflow-dot {
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: #3b82f6;
+            background-color: #3b82f6;
             margin-top: 6px;
             flex-shrink: 0;
         }
@@ -406,7 +404,7 @@ def inject_css() -> None:
         }
 
         .reason-step {
-            background: #080c14;
+            background-color: #080c14;
             border: 1px solid rgba(99,179,237,0.08);
             border-radius: 10px;
             padding: 12px 14px;
@@ -418,7 +416,6 @@ def inject_css() -> None:
 
         .reason-step b {
             color: #3b82f6;
-            font-family: 'JetBrains Mono', monospace;
         }
 
         .news-item {
@@ -426,7 +423,9 @@ def inject_css() -> None:
             border-bottom: 1px solid rgba(99,179,237,0.06);
         }
 
-        .news-item:last-child { border-bottom: none; }
+        .news-item:last-child {
+            border-bottom: none;
+        }
 
         .news-title {
             font-size: 0.95rem;
@@ -441,7 +440,9 @@ def inject_css() -> None:
             text-decoration: none;
         }
 
-        .news-title a:hover { color: #3b82f6; }
+        .news-title a:hover {
+            color: #3b82f6;
+        }
 
         .news-meta {
             font-size: 0.8rem;
@@ -460,9 +461,18 @@ def inject_css() -> None:
             font-size: 0.9rem;
         }
 
-        .risk-row:last-child { border-bottom: none; }
-        .risk-key { color: #64748b; font-weight: 600; }
-        .risk-val { color: #e2e8f0; font-family: 'JetBrains Mono', monospace; }
+        .risk-row:last-child {
+            border-bottom: none;
+        }
+
+        .risk-key {
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .risk-val {
+            color: #e2e8f0;
+        }
 
         .status-ok { color: #22c55e; font-weight: 700; }
         .status-warn { color: #f59e0b; font-weight: 700; }
@@ -476,22 +486,34 @@ def inject_css() -> None:
             font-weight: 800;
             letter-spacing: 0.08em;
             border: 1px solid rgba(99,179,237,0.2);
-            background: rgba(99,179,237,0.08);
+            background-color: rgba(99,179,237,0.08);
         }
 
-        .badge-live { color: #22c55e; border-color: rgba(34,197,94,0.3); background: rgba(34,197,94,0.08); }
-        .badge-fallback { color: #f59e0b; border-color: rgba(245,158,11,0.3); background: rgba(245,158,11,0.08); }
+        .badge-live {
+            color: #22c55e;
+            border-color: rgba(34,197,94,0.3);
+            background-color: rgba(34,197,94,0.08);
+        }
+
+        .badge-fallback {
+            color: #f59e0b;
+            border-color: rgba(245,158,11,0.3);
+            background-color: rgba(245,158,11,0.08);
+        }
 
         .empty-state {
             border: 1px dashed rgba(99,179,237,0.15);
             border-radius: 20px;
-            background: #0c1220;
+            background-color: #0c1220;
             padding: 64px 28px;
             text-align: center;
             margin-top: 16px;
         }
 
-        .empty-icon { font-size: 3rem; margin-bottom: 16px; }
+        .empty-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
 
         .empty-title {
             font-size: 1.4rem;
@@ -518,7 +540,23 @@ def inject_css() -> None:
             border-bottom: 1px solid rgba(99,179,237,0.1);
         }
 
-        .sidebar-logo span { color: #3b82f6; }
+        .sidebar-logo span {
+            color: #3b82f6;
+        }
+
+        @media (max-width: 900px) {
+            .block-container {
+                padding-top: 3.5rem;
+            }
+
+            .signal-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .page-title {
+                font-size: 1.8rem;
+            }
+        }
         </style>
         """,
         unsafe_allow_html=True,
