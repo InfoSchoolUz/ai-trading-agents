@@ -593,14 +593,19 @@ def analyze_symbol(base_url: str, symbol: str, period: str, interval: str) -> di
     return response.json()
 
 
-@st.cache_data(ttl=120, show_spinner=False)
 def get_initial_news(base_url: str, symbol: str, period: str, interval: str) -> dict[str, Any]:
     try:
         payload = {"symbol": symbol, "period": period, "interval": interval}
         response = requests.post(f"{base_url}/analyze", json=payload, timeout=120)
+
         if response.status_code >= 400:
             return {}
-        return response.json()
+
+        data = response.json()
+        if not isinstance(data, dict):
+            return {}
+
+        return data
     except Exception:
         return {}
 
@@ -927,8 +932,9 @@ st.markdown(
 
 # ── Default homepage data ──────────────────────────────────────────────────────
 initial_data = {}
-if not st.session_state.analyzed or not st.session_state.result:
-    initial_data = get_initial_news(backend_url, symbol, period, interval)
+if not st.session_state.analyzed and not st.session_state.result:
+    with st.spinner("Loading latest market news..."):
+        initial_data = get_initial_news(backend_url, symbol, period, interval)
 
 # ── Conditional content ────────────────────────────────────────────────────────
 if st.session_state.analyzed and st.session_state.result:
@@ -1081,8 +1087,8 @@ if st.session_state.analyzed and st.session_state.result:
         })
 
 else:
-    news = initial_data.get("news", {})
-    articles = news.get("articles", [])
+    news = initial_data.get("news", {}) if isinstance(initial_data, dict) else {}
+    articles = news.get("articles", []) if isinstance(news, dict) else []
 
     st.markdown(
         """
@@ -1096,6 +1102,20 @@ else:
         unsafe_allow_html=True,
     )
 
-    st.markdown('<div class="card">', unsafe_allow_html=True)
-    render_articles(articles)
-    st.markdown("</div>", unsafe_allow_html=True)
+    if articles:
+        st.markdown('<div class="card">', unsafe_allow_html=True)
+        render_articles(articles)
+        st.markdown("</div>", unsafe_allow_html=True)
+    else:
+        st.markdown(
+            """
+            <div class="card">
+                <div class="empty-icon">📰</div>
+                <div class="empty-title">Latest market news is not available right now</div>
+                <div class="empty-subtitle">
+                    Select an asset and click <strong>Run Analysis</strong> to load fresh AI-powered market data and news.
+                </div>
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
