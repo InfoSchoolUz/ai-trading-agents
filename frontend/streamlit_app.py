@@ -207,7 +207,7 @@ def inject_css() -> None:
         .block-container {
             max-width: 1440px;
             padding-top: 2rem;
-            padding-bottom: 3rem;
+            padding-bottom: 5rem;
         }
 
         [data-testid="stSidebar"] {
@@ -260,7 +260,7 @@ def inject_css() -> None:
             font-weight: 700;
             color: #f1f5f9;
             letter-spacing: -0.02em;
-            margin-bottom: 0.2rem;
+            margin-bottom: 1rem;
             line-height: 1.1;
         }
 
